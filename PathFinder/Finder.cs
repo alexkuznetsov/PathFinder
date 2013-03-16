@@ -12,7 +12,7 @@
 
 		private Action<string> onSuccess = (data) => { };
 		private Action<string> onError = (data) => { };
-
+		
 		internal event Action<string> OnSuccess
 		{
 			add { onSuccess += value; }
@@ -55,6 +55,7 @@
 			}
 			else
 			{
+				//попробуем найти пусть наоборот
 				result = _Find(pathMatrix, toId, fromId);
 
 				if (result.IsSuccess)

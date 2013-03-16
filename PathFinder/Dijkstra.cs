@@ -3,13 +3,29 @@
 	using System;
 	using System.Collections.Generic;
 
+	/// <summary>
+	/// Алгоритм Дейкстры. Поиск кратчайших путей из точки А.
+	/// </summary>
 	class Dijkstra
 	{
+		/// <summary>
+		/// Дистанции из А в различные направления
+		/// </summary>
 		internal double[] Distances { get; private set; }
+
+		/// <summary>
+		/// Массив родителей. По данному массиву можно проследить напарвление - от какой точки к какой 
+		/// переходит путь.
+		/// </summary>
 		internal int[] Parents { get; private set; }
 
 		private List<int> queue = new List<int>();
 
+		/// <summary>
+		/// Инициалищзация оценок кратчайших путей и предшественников
+		/// </summary>
+		/// <param name="s">Стартовая точка</param>
+		/// <param name="len">Длина массива путей</param>
 		private void InitializeSingleSource(int s, int len)
 		{
 			Distances = new double[len];
@@ -27,6 +43,10 @@
 			Parents[s] = -1;
 		}
 
+		/// <summary>
+		/// Извлечение минимальной вершины
+		/// </summary>
+		/// <returns></returns>
 		private int ExtractMin()
 		{
 			double min = Double.PositiveInfinity;
@@ -86,6 +106,12 @@
 			}
 		}
 
+		/// <summary>
+		/// Ослабление ребра (u, v)
+		/// </summary>
+		/// <param name="u"></param>
+		/// <param name="v"></param>
+		/// <param name="G"></param>
 		void Relax(int u, int v, double[,] G)
 		{
 			/* Edge exists, relax the edge */
